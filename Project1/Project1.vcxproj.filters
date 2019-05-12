@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\Homework">
+      <UniqueIdentifier>{facf3c71-2339-4109-bd3f-9123cc404bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\imgui">
+      <UniqueIdentifier>{afdd407b-0707-4310-949d-969d0c26f7d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Homework">
+      <UniqueIdentifier>{23fc0a03-0548-4e4f-bb75-a16895a5ce52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Homework\Homework5">
+      <UniqueIdentifier>{e5321743-ccb4-4560-b397-4ddf4ee1995d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\imgui">
+      <UniqueIdentifier>{1682ed64-3c45-41a2-a0c0-321832201d7e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="glad.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MySphere.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderProgram.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Homework2.cpp">
+      <Filter>源文件\Homework</Filter>
+    </ClCompile>
+    <ClCompile Include="Homework3.cpp">
+      <Filter>源文件\Homework</Filter>
+    </ClCompile>
+    <ClCompile Include="Homework4.cpp">
+      <Filter>源文件\Homework</Filter>
+    </ClCompile>
+    <ClCompile Include="Homework6.cpp">
+      <Filter>源文件\Homework</Filter>
+    </ClCompile>
+    <ClCompile Include="HomeworkBase.cpp">
+      <Filter>源文件\Homework</Filter>
+    </ClCompile>
+    <ClCompile Include="Homework5.cpp">
+      <Filter>源文件\Homework\Homework5</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>源文件\Homework\Homework5</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\imGUI\imgui.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\imGUI\imgui_demo.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\imGUI\imgui_draw.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_glfw.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_opengl3.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\imGUI\imgui_widgets.cpp">
+      <Filter>源文件\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Homework7.cpp">
+      <Filter>源文件\Homework</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shader.vs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="shader.fs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="coor_shader.vs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="coor_shader.fs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="texture_shader.fs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="texture_shader.vs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="imgui.ini">
+      <Filter>源文件\imgui</Filter>
+    </None>
+    <None Include="light_source.fs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="phong_shading.vs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="phong_shading.fs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="gouraud_shading.vs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="gouraud_shading.fs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="depth_shader.vs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="depth_shader.fs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="depth_quad.vs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="depth_quad.fs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="shadow_shader.vs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="shadow_shader.fs">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MySphere.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderProgram.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HomeworkBase.h">
+      <Filter>头文件\Homework</Filter>
+    </ClInclude>
+    <ClInclude Include="Homework2.h">
+      <Filter>头文件\Homework</Filter>
+    </ClInclude>
+    <ClInclude Include="Homework3.h">
+      <Filter>头文件\Homework</Filter>
+    </ClInclude>
+    <ClInclude Include="Homework4.h">
+      <Filter>头文件\Homework</Filter>
+    </ClInclude>
+    <ClInclude Include="Homework5.h">
+      <Filter>头文件\Homework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\imGUI\imgui.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_glfw.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_opengl3.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\imGUI\imgui_internal.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\imGUI\imstb_rectpack.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\imGUI\imstb_textedit.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\imGUI\imstb_truetype.h">
+      <Filter>头文件\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Homework6.h">
+      <Filter>头文件\Homework</Filter>
+    </ClInclude>
+    <ClInclude Include="Homework7.h">
+      <Filter>头文件\Homework</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
