@@ -125,6 +125,7 @@ GLFWwindow* initialize() {
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		throw "fail to load glad";
 	}
+	glViewport(0, 0, windowWidth, windowHeight);
 	glEnable(GL_DEPTH_TEST);
 	// init GUI
 	initGUI(window);

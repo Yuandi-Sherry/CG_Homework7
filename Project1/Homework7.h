@@ -7,6 +7,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "Camera.h"
+
+#include <stb_image.h>
 using namespace std;
 class Homework7 : public HomeworkBase {
 private:
@@ -88,11 +90,18 @@ private:
 	void RenderCube();
 	// light
 	glm::vec3 lightPos;
-	void RenderScene();
+	void RenderScene(ShaderProgram & shader);
 	ShaderProgram simpleDepthShader;
 	ShaderProgram debugDepthQuad;
 	ShaderProgram shadowShader;
 	Camera camera;
+
+	// texture
+	GLuint woodTexture;
+
+	GLuint loadTexture(GLchar* path);
+
+
 public:
 	void displayController();
 	void imGuiMenuSetting();
