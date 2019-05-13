@@ -25,13 +25,13 @@ void processInput(GLFWwindow * window, Homework5 & homework5);
 void initGUI(GLFWwindow* window);
 void displayGUI(GLFWwindow* window, Homework2 & homework2, Homework3 & homework3, Homework4 & homework4);
 GLFWwindow* initialize();
-int windowWidth = 800;
-int windowHeight = 600;
+int windowWidth = 1200;
+int windowHeight = 1200;
 // homework5 bonus mouse movement
 float yaw = -90.0f;
 float pitch = 0.0f;
-float lastX = 800.0f / 2.0;
-float lastY = 600.0f / 2.0;
+float lastX = 1200.0f / 2.0;
+float lastY = 1200.0f / 2.0;
 float fov = 45.0f;
 float sensitivity = 0.1f;
 
@@ -73,8 +73,8 @@ int main() {
 		while (!glfwWindowShouldClose(window)) {
 			// 检查触发事件、更新窗口，回调
 			glfwPollEvents();
-			/*processInput(window, homework5);
-			glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
+			processInput(window, homework5);
+			/*glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			// 作业对象的显示控制
 			/*homework2.displayController();
@@ -83,7 +83,7 @@ int main() {
 			homework5.displayController();
 			homework6.displayController();*/
 			homework7.displayController();
-			//displayGUI(window, homework2, homework3, homework4);
+			displayGUI(window, homework2, homework3, homework4);
 			//homework4.displayCosmos();
 			// 交换缓冲、绘制、显示
 			glfwSwapBuffers(window);
@@ -140,12 +140,14 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 /*
  * 处理输入
  */
+
 void processInput(GLFWwindow * window, Homework5 & homework5) {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
 		glfwSetWindowShouldClose(window, true);
 	}
-	homework5.processInput(window);
-	homework6.processInput(window);
+	// homework5.processInput(window);
+	// homework6.processInput(window);
+	homework7.processInput(window);
 }
 
 
@@ -205,8 +207,9 @@ void displayGUI(GLFWwindow* window, Homework2 & homework2, Homework3 & homework3
 }
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
-	homework5.mouseCallback(window, xpos, ypos);
-	homework6.mouseCallback(window, xpos, ypos);
+	// homework5.mouseCallback(window, xpos, ypos);
+	// homework6.mouseCallback(window, xpos, ypos);
+	homework7.mouseCallback(window, xpos, ypos);
 }
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
 	homework5.scrollCallback(window, xoffset, yoffset);

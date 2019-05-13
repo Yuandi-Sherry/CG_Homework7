@@ -67,6 +67,7 @@ void Camera::processKeyboard(CameraMovement direction, float deltaTime) {
 		position -= right * v;
 		break;
 	}
+	updateCameraVectors();
 }
 
 void Camera::processMouseMovement(float xoffset, float yoffset, bool constrainPitch) {
@@ -87,11 +88,14 @@ void Camera::processMouseMovement(float xoffset, float yoffset, bool constrainPi
 }
 
 void Camera::processMouseScroll(float yoffset) {
-	// cout << "zoom" << endl;
+	
+	cout << "yoffset" << yoffset << endl;
 	if (Zoom >= 1.0f && Zoom <= 45.0f)
-		Zoom -= yoffset;
+		Zoom += yoffset;
 	if (Zoom <= 1.0f)
 		Zoom = 1.0f;
 	if (Zoom >= 45.0f)
 		Zoom = 45.0f;
+	cout << "zoom" << Zoom << endl;
+	updateCameraVectors();
 }

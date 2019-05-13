@@ -126,34 +126,37 @@ void Homework6::setCubeVAOVBO() {
 	glEnableVertexAttribArray(1);
 }
 void Homework6::imGuiSetting() {
-	if (basic) {
-		// 选择Phong和Gouraud Shading
-		ImGui::RadioButton("Phong", &phong, 1);
-		ImGui::RadioButton("Gouraud", &phong, 0);
-		ImGui::DragFloat3("View point", (float*)glm::value_ptr(viewPoint), 1.0f);
-		// 视点 camera.position
-		if (lastViewPoint != viewPoint) {
-			camera.setCamera(viewPoint);
-			lastViewPoint = viewPoint;
-		}
-		else {
-			lastViewPoint = camera.getPositon();
-			viewPoint = camera.getPositon();
-		}
-		
-		// 光照位置
-		ImGui::DragFloat3("Light Position", (float*)glm::value_ptr(lightPos), 1.0f);
-		// 光照颜色
-		ImGui::DragFloat3("Light Color", (float*)glm::value_ptr(lightColor), 0.005f, 0.0f, 1.0f);
-		// ambient, diffuse, specular, reflectionRate
-		ImGui::DragFloat("ambient factor", &ambientFactor, 0.1f, 0.0f, 1.0f);
-		ImGui::DragFloat("diffuse factor", &diffuseFactor, 0.1f, 0.0f, 10.0f);
-		ImGui::DragFloat("specular factor", &specularFactor, 0.1f, 0.0f, 1.0f);
-		ImGui::DragInt("reflection parameter", &reflectionPara, 10, 2, 256 );
-	} 
-	if (bonus) {
+	if (homework6) {
+		if (basic) {
+			// 选择Phong和Gouraud Shading
+			ImGui::RadioButton("Phong", &phong, 1);
+			ImGui::RadioButton("Gouraud", &phong, 0);
+			ImGui::DragFloat3("View point", (float*)glm::value_ptr(viewPoint), 1.0f);
+			// 视点 camera.position
+			if (lastViewPoint != viewPoint) {
+				camera.setCamera(viewPoint);
+				lastViewPoint = viewPoint;
+			}
+			else {
+				lastViewPoint = camera.getPositon();
+				viewPoint = camera.getPositon();
+			}
 
+			// 光照位置
+			ImGui::DragFloat3("Light Position", (float*)glm::value_ptr(lightPos), 1.0f);
+			// 光照颜色
+			ImGui::DragFloat3("Light Color", (float*)glm::value_ptr(lightColor), 0.005f, 0.0f, 1.0f);
+			// ambient, diffuse, specular, reflectionRate
+			ImGui::DragFloat("ambient factor", &ambientFactor, 0.1f, 0.0f, 1.0f);
+			ImGui::DragFloat("diffuse factor", &diffuseFactor, 0.1f, 0.0f, 10.0f);
+			ImGui::DragFloat("specular factor", &specularFactor, 0.1f, 0.0f, 1.0f);
+			ImGui::DragInt("reflection parameter", &reflectionPara, 10, 2, 256);
+		}
+		if (bonus) {
+
+		}
 	}
+	
 }
 void Homework6::imGuiMenuSetting() {
 	if (ImGui::BeginMenu("Homework6")) {

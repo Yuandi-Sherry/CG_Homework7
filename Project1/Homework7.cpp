@@ -6,6 +6,9 @@
 using namespace std;
 extern int windowWidth;
 extern int windowHeight;
+extern float lastX;
+extern float lastY;
+glm::mat4 lastView = glm::mat4(1.0f);
 void Homework7::init(const string & vertexShaderFile, const string & fragmentShaderFile) {
 	Shader simpleDepthShadertmp("depth_shader.vs", "depth_shader.fs");
 	simpleDepthShader.setShaders(simpleDepthShadertmp.getVertexShader(), simpleDepthShadertmp.getFragmentShader());
@@ -13,7 +16,7 @@ void Homework7::init(const string & vertexShaderFile, const string & fragmentSha
 	debugDepthQuad.setShaders(debugDepthQuadtmp.getVertexShader(), debugDepthQuadtmp.getFragmentShader());
 	Shader shadowShadertmp("shadow_shader.vs", "shadow_shader.fs");
 	shadowShader.setShaders(shadowShadertmp.getVertexShader(), shadowShadertmp.getFragmentShader());
-	camera.setCamera(glm::vec3(0.0f, 0.0f, 3.0f));
+	camera.setCamera(glm::vec3(0.0f, 0.0f, 8.0f));
 
 	// 设置纹理
 	shadowShader.useProgram();
@@ -39,6 +42,8 @@ void Homework7::configureDepth() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	GLfloat borderColor[] = { 1.0, 1.0, 1.0, 1.0 };
+	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
 
 	// 把生成的深度纹理作为帧缓冲的深度缓冲
 	glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
@@ -67,38 +72,16 @@ void Homework7::setPlane() {
 
 }
 void Homework7::displayController() {
-	// 1. 首选渲染深度贴图
-	/*glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
-	glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
-	glClear(GL_DEPTH_BUFFER_BIT);
-	configureShaderAndMatrices();
-	RenderScene();
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	// 2. 像往常一样渲染场景，但这次使用深度贴图
-	glViewport(0, 0, windowWidth, windowHeight);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	configureShaderAndMatrices();
-	glBindTexture(GL_TEXTURE_2D, depthMap);
-	RenderScene();
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);*/
-	configureShaderAndMatrices();
-	// RenderScene();
-}
-
-
-void Homework7::imGuiMenuSetting() {
-
-}
-void Homework7::imGuiSetting() {
-
-}
-/*
-	确保每个物体设置了合适的投影和视图矩阵
- */
-void Homework7::configureShaderAndMatrices() {
 	GLfloat near_plane = 1.0f, far_plane = 7.5f;
 	// 使用正交投影制造光线都平行的定向光
-	glm::mat4 lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+	glm::mat4 lightProjection;
+	if (persp == 1) {
+		lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+	}
+	else {
+		lightProjection = glm::perspective(45.0f, (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
+	}
+	
 	// 将每个物体变换到从光源视角中可见的空间中
 	glm::mat4 lightView = glm::lookAt(lightPos, glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	// 光空间变换矩阵
@@ -117,6 +100,16 @@ void Homework7::configureShaderAndMatrices() {
 	shadowShader.useProgram();
 	glm::mat4 projection = glm::perspective(camera.Zoom, (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
 	glm::mat4 view = camera.getViewMatrix();
+	if (view != lastView) {
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				cout << view[i][j] << " ";
+			}
+			cout << endl;
+		}
+		lastView = view;
+	}
+	
 	glUniformMatrix4fv(glGetUniformLocation(shadowShader.getShaderProgram(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 	glUniformMatrix4fv(glGetUniformLocation(shadowShader.getShaderProgram(), "view"), 1, GL_FALSE, glm::value_ptr(view));
 	// Set light uniforms
@@ -129,7 +122,6 @@ void Homework7::configureShaderAndMatrices() {
 	glBindTexture(GL_TEXTURE_2D, depthMap);
 	RenderScene(shadowShader);
 
-
 	// Render Depth map to quad
 	debugDepthQuad.useProgram();
 	glUniform1f(glGetUniformLocation(debugDepthQuad.getShaderProgram(), "near_plane"), near_plane);
@@ -137,6 +129,21 @@ void Homework7::configureShaderAndMatrices() {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, depthMap);
 	// RenderQuad();
+}
+
+
+void Homework7::imGuiMenuSetting() {
+	if (ImGui::BeginMenu("Homework7")) {
+		ImGui::MenuItem("Basic", NULL, &basic);
+		ImGui::EndMenu();
+	}
+}
+void Homework7::imGuiSetting() {
+	if (basic) {
+		// 选择正交和透视
+		ImGui::RadioButton("ortho projection", &persp, 1);
+		ImGui::RadioButton("perspective projection", &persp, 0);
+	}
 }
 
 void Homework7::RenderScene(ShaderProgram & shader) {
@@ -242,4 +249,31 @@ GLuint Homework7::loadTexture(GLchar* path)
 	// SOIL_free_image_data(image);
 	return textureID;
 
+}
+
+void Homework7::mouseCallback(GLFWwindow* window, double xpos, double ypos) {
+	cout << "mouse call back" << endl;
+	float xoffset = xpos - lastX;
+	float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+	lastX = xpos;
+	lastY = ypos;
+	camera.processMouseMovement(xoffset, yoffset);
+
+}
+
+
+void Homework7::processInput(GLFWwindow * window) {
+	
+	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+		camera.processKeyboard(FORWARD, 0.1);
+	}
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+		camera.processKeyboard(BACKWARD, 0.1);
+	}
+	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+		camera.processKeyboard(RIGHT, 0.1);
+	}
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+		camera.processKeyboard(LEFT, 0.1);
+	}
 }

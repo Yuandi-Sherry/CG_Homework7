@@ -100,7 +100,8 @@ private:
 	GLuint woodTexture;
 
 	GLuint loadTexture(GLchar* path);
-
+	bool basic;
+	int persp; // 透视投影和正交投影
 
 public:
 	void displayController();
@@ -112,5 +113,7 @@ public:
 	void init(const string & vertexShaderFile, const string & fragmentShaderFile);
 	
 	void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+	void mouseCallback(GLFWwindow* window, double xpos, double ypos);
+	void processInput(GLFWwindow * window);
 };
 #endif // !1

@@ -63,9 +63,6 @@
     <ClCompile Include="Homework5.cpp">
       <Filter>源文件\Homework\Homework5</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>源文件\Homework\Homework5</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\imGUI\imgui.cpp">
       <Filter>源文件\imgui</Filter>
     </ClCompile>
@@ -88,6 +85,9 @@
       <Filter>源文件\Homework</Filter>
     </ClCompile>
     <ClCompile Include="stb_image.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
